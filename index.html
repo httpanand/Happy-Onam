@@ -25,7 +25,9 @@
 	 background-image:url(hu.jpg);
    background-repeat:no-repeat;
    background-attachment: fixed;
-        background-size: 100%;
+   /* ensure image covers screen in vertical screens like on phone */
+        background-size: cover;
+		background-position: center;
 	 display: flex;
 	 justify-content: center;
 	 align-items: center;
@@ -36,6 +38,8 @@
 	 font-size: clamp(36px, 0.6rem, 100px);
 	 color: #fff;
 	 text-shadow: 6px 4px #735b13;
+	 /* ensure title is always above everything, specifically maveli image */
+	 z-index: 1;
 }
  [class^='firework-'] {
 	 position: absolute;
@@ -204,6 +208,13 @@
     text-align :left;
     position: absolute;
     left : 20px;
-    
+
       }
       </style>
+	<!-- make maveli image responsive to screen size -->
+	<script>
+		const body = document.querySelector('body');
+		const img = document.querySelector('img');
+		img.style.height = `${innerHeight * 0.95}px`;
+		body.onresize = () => img.style.height = `${innerHeight * 0.95}px`;
+	</script>
